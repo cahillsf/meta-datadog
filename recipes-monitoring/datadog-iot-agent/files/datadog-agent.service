@@ -1,0 +1,16 @@
+[Unit]
+Description=Datadog IoT Agent
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=dd-agent
+Group=dd-agent
+PIDFile=/opt/datadog-agent/run/agent.pid
+ExecStart=/opt/datadog-agent/bin/agent/agent run -p /opt/datadog-agent/run/agent.pid
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

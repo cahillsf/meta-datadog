@@ -1,0 +1,15 @@
+# Datadog IoT Agent configuration
+# Secrets are resolved natively (Agent 7.70+) without baking plaintext keys into the image.
+# Provision the secrets file on the target device with ownership dd-agent:dd-agent (mode 0400):
+#
+#   datadog_api_key: "<YOUR_API_KEY>"
+
+api_key: "ENC[@DD_API_KEY_SECRET_ID@]"
+site: "@DD_SITE@"
+
+secret_backend_type: "@DD_SECRETS_BACKEND@"
+secret_backend_config:
+  file_path: "@DD_SECRETS_FILE@"
+
+iot_host: true
+log_file: /var/log/datadog/agent.log
